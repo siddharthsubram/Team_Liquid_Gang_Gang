@@ -29,7 +29,7 @@ import './App.css';
 
 let theme = createMuiTheme({
   palette: {
-    type: "light",
+    type: "dark",
     primary: {
       main: "#0f1923"
     }
@@ -286,14 +286,14 @@ export class App extends React.Component {
           <Navbar />
           {/* Hero unit */}
           {/* End hero unit */}
-          <Container maxWidth="md" component="main">
-          <Container maxWidth="sm" component="main" className='heroContent'>
+          <div className='vid-wrapper'>
             <img src={agentpic} className='agent-pic' alt="Valorant Agents" />
-          </Container>
+          </div>
+          <Container maxWidth="md" component="main">
             <Grid container spacing={5} alignItems="flex-end">
               {tiers.map((tier) => (
                 // Enterprise card is full width at sm breakpoint
-                <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
+                <Grid item key={tier.title} xs={6 } sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
                   <Card>
                     <CardHeader
                       title={tier.title}
@@ -320,29 +320,6 @@ export class App extends React.Component {
             </Grid>
           </Container>
 
-
-          <Container maxWidth="md" component="main">
-            <Grid container spacing={5} alignItems="flex-end">
-              {maps.map((tier) => (
-                // Enterprise card is full width at sm breakpoint
-                <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
-                  <Card>
-                    <CardHeader
-                      title={tier.title}
-                      titleTypographyProps={{ align: 'center' }}
-                      subheaderTypographyProps={{ align: 'center' }}
-                      className='cardHeader'
-                    />
-                    <CardContent>
-                      <div className='cardPricing'>
-                        <img className='pic' src={tier.pic} alt="Player Pic" />
-                      </div>
-                    </CardContent>
-                  </Card>
-                </Grid>
-              ))}
-            </Grid>
-          </Container>
           <div className='vid-wrapper'>
             <iframe className='vid'src="https://www.youtube.com/embed/FH5C16YsmXA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>

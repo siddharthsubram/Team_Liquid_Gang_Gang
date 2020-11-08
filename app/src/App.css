@@ -37,12 +37,18 @@
   }
 }
 
+.heroContent {
+  display: flex;
+  justify-content: center;
+}
+
 .agent-pic {
   max-height: 400px;
   margin: 15px;
 }
 
 .vid-wrapper {
+  display: flex;
   justify-content: center;
   padding: 5% 25%;
 }

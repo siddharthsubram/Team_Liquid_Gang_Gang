@@ -6,8 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import team_liquid from '../../assets/Team_Liquid_2020.png';
 import './Navbar.css';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+import team_liquid_valorant from '../../assets/valorant_title.png'
 
 export class Navbar extends React.Component {
   // const classes = useStyles();
@@ -17,7 +16,7 @@ export class Navbar extends React.Component {
         <Toolbar className='{classes.toolbar}'>
           <img className='logo' src={team_liquid} alt="Team Liquid"/>
           <Typography variant="h6" color="inherit" noWrap className='{classes.toolbarTitle}'>
-            Team Liquid VALORANT
+            <img src={team_liquid_valorant} style={{maxHeight: '100px', maxWidth: '500px'}}/>
             </Typography>
           <nav>
             <Link variant="button" color="textPrimary" href="#" className='MapPick'>
