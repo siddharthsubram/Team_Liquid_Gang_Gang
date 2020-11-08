@@ -11,7 +11,7 @@ CORS(app)
 def index(datatype, wiki):
     url = 'https://api.liquipedia.net/api/v1/' + datatype
     params = {
-        'apikey': 'zIAPhNbTNS1xT5aEvAO0H4oE4aYrGLr04cjgx8LAqrgEj3iWPI27BG02RO09VgSHAuivIptunkuDZMQ8xjGMTKBXzp68v7e1AIbZBoad42I5dcGbyp9CjFg2czt1g3ak',
+        'apikey': '172edrW4KxLIfk1SMsvLLLzdx6ugmT8anucDNe1QkkRUh7p3hcUQRzA6EcQmaqPuCA5y22mExEPVTmVWpt9NDgysDBlBWXv3PopI79A6DgS8QXBUgEcyaDhdKXlry6b5',
         'wiki': wiki
     }
     response = requests.post(url, data=params)
