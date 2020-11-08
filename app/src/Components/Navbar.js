@@ -67,19 +67,22 @@ export default function Navbar() {
             Compare Teams
             </Link>
           <Link variant="button" color="textPrimary" href="#" className={classes.link}>
-            Player 1
+            ec1s
             </Link>
           <Link variant="button" color="textPrimary" href="#" className={classes.link}>
-            Player 2
+            soulcas
             </Link>
           <Link variant="button" color="textPrimary" href="#" className={classes.link}>
-            Player 3
+            Kryptix
             </Link>
           <Link variant="button" color="textPrimary" href="#" className={classes.link}>
-            Player 4
+            L1NK
             </Link>
           <Link variant="button" color="textPrimary" href="#" className={classes.link}>
-            Player 5
+            ScreaM
+            </Link>
+          <Link variant="button" color="textPrimary" href="#" className={classes.link}>
+            Sliggy
             </Link>
         </nav>
         <Button href="#" color="primary" variant="outlined" className={classes.link}>
