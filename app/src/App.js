@@ -100,134 +100,180 @@ export class App extends React.Component {
     super(props);
     this.myRef = React.createRef();
     this.state = {
-      results: [],
+      wins: {},
+      liquid: [],
+      fish: [],
+      g2: [],
     }
     this.dataset = [100, 200, 300, 400, 500];
     this.getData = this.getData.bind(this);
   }
   componentDidMount() {
-    // const endpoints = ['team', 'match', 'game', 'tournament'];
-    // for (const endpt of endpoints)
     this.getData('matchfeed', 'valorant');
-    let size = 500;
-    console.log(this.myRef);
-   
-      var data = [ 
-         {"TeamName":'Team Liquid', "Winrate":75, "Color": '#5da9e8'}, 
-         {"TeamName":'G2 Esports', "Winrate":20, "Color": '#ba9c9f' }, 
-         {"TeamName":'Funplus Phoenix', "Winrate":55, "Color": '#ff0015'}, 
-         {"TeamName":'Fish123', "Winrate":63, "Color": 'green' }, 
-         {"TeamName":'OfflineTV', "Winrate":23, "Color": 'Pink'}
-      ]
-   
-
-       var margin = {top: 10, right: 30, bottom: 90, left: 200},
-            width = 1500 - margin.left - margin.right,
-            height = 700 - margin.top - margin.bottom;
-
-        // creating SVG
-        var svg = d3.select("body").append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-      
-         // Creating X axis scale
-        var x = d3.scaleLinear()
-            .domain([0, 100])
-            .range([ 0, width])
-
-        //Creating Y axis scale  
-        var y = d3.scaleBand()
-            .domain(data.map(function(d){return d.TeamName}))
-            .range([ height, 0])  
-        
-       //adding y axis 
-        svg.append("g")
-            .call(d3.axisLeft(y))
-            .attr("font-size",20)
-
-        svg.append("text")
-            .attr("x", (width / 2))
-            .attr("y", height + 45)
-            .attr("font-size", "20px")
-            .attr("font-weight", "bold")
-            .text("Win rate(%)")
-      
-        //X axis 
-        svg.append("g")
-            .attr("transform", "translate(0," + height + ")")
-            .call(d3.axisBottom(x))
-            .attr("font-size",20)
-      
-        //Creating X axis gridlines (We dont need y axis since the data is printed only left to right)      
-         function make_x_grid() {
-                return d3.axisBottom(x).ticks(20); 
-        }
-
-
-        //Appending gridlines first so that the gridlines appear below the rest of the graph 
-        svg.append("g")			
-          .attr("class", "grid")
-          .attr("transform", "translate(0," + height + ")")
-          .attr("Opacity", 0.1)
-          .call(make_x_grid()
-              .tickSize(-height)
-              .tickFormat("")
-             
-        )
-      
-      
-        svg.selectAll("bars")
-            .data(data)
-            .enter()
-            .append("rect")
-            .attr("x", x(0) )
-            .attr("y", function(d) { return y(d.TeamName) + 20; })
-            .attr("width", function(d) { return x(d.Winrate); })
-            .attr("height", y.bandwidth()- 50 )
-            .style("fill", function(d){ return(d["Color"])})
-             
-      
   }
 
-  getData(endpoint, wiki) {
-    const url = 'http://localhost:4200/' + endpoint + '/' + wiki;
-    console.log('fetching data from', url);
-    axios.get(url)
-      .then(response => {
-        console.log('response', response.data.result);
-        this.setState({
-          results: response.data.result,
-        });
-        console.log(this.state.results); // legit data
-        this.converttoCSV(this.state.results);
-
-        // console.log('state', this.state);
-      })
+  async getData(endpoint, wiki) {
+    const liquid = 'http://localhost:4200/teamliquid';
+    console.log('fetching data from', liquid);
+    let l = await axios.get(liquid)
       .catch(function (error) {
-        // handle error
         console.log(error);
-      })
-      .finally(function () {
-        // always executed
       });
-      
-      d3.csv("")
+
+    const fish = 'http://localhost:4200/fish123';
+    console.log('fetching data from', fish);
+    let f = await axios.get(fish)
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    const g2 = 'http://localhost:4200/g2esports';
+    console.log('fetching data from', g2);
+    let g = await axios.get(g2)
+      .catch(function (error) {
+        console.log(error);
+      });
+    let liquiddata = l.data.result;
+    let fishdata = f.data.result;
+    let g2data = g.data.result;
+    // console.log('responses', liquiddata, fishdata, g2data);
+    let teamwins = {};
+    let totalgames = 0;
+    for (const l of liquiddata) {
+      if (l['opponent1score'] > l['opponent2score'])
+        teamwins[l['opponent1']] = (teamwins[l['opponent1']] + 1) || 1;
+      else
+        teamwins[l['opponent2']] = (teamwins[l['opponent2']] + 1) || 1;
+      totalgames++;
+    }
+
+    for (const l of fishdata) {
+      if (l['opponent1score'] > l['opponent2score'])
+        teamwins[l['opponent1']] = (teamwins[l['opponent1']] + 1) || 1;
+      else
+        teamwins[l['opponent2']] = (teamwins[l['opponent2']] + 1) || 1;
+      totalgames++;
+    }
+
+    for (const l of g2data) {
+      if (l['opponent1score'] > l['opponent2score'])
+        teamwins[l['opponent1']] = (teamwins[l['opponent1']] + 1) || 1;
+      else
+        teamwins[l['opponent2']] = (teamwins[l['opponent2']] + 1) || 1;
+      totalgames++;
+    }
+
+    console.log('# teams', Object.keys(teamwins).length, 'teamwins', teamwins, 'totalgames', totalgames);
+    this.setState({
+      wins: teamwins,
+    });
+
+    let data = [];
+    for (var key of Object.keys(teamwins)) {
+      data.push({"TeamName": key, "Winrate": teamwins[key], "Color": '#5da9e8'});
+    }
+    console.log('win data', data);
+        // var data = [
+    //   { "TeamName": 'Team Liquid', "Winrate": 75, "Color": '#5da9e8' },
+    //   { "TeamName": 'G2 Esports', "Winrate": 20, "Color": '#ba9c9f' },
+    //   { "TeamName": 'Funplus Phoenix', "Winrate": 55, "Color": '#ff0015' },
+    //   { "TeamName": 'Fish123', "Winrate": 63, "Color": 'green' },
+    //   { "TeamName": 'OfflineTV', "Winrate": 23, "Color": 'Pink' }
+    // ]
+
+    var margin = { top: 10, right: 30, bottom: 90, left: 200 },
+      width = 1500 - margin.left - margin.right,
+      height = 700 - margin.top - margin.bottom;
+
+    // creating SVG
+    var svg = d3.select("body").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    // Creating X axis scale
+    var x = d3.scaleLinear()
+      .domain([0, 100])
+      .range([0, width])
+
+    //Creating Y axis scale  
+    var y = d3.scaleBand()
+      .domain(data.map(function (d) { return d.TeamName }))
+      .range([height, 0])
+
+    //adding y axis 
+    svg.append("g")
+      .call(d3.axisLeft(y))
+      .attr("font-size", 20)
+
+    svg.append("text")
+      .attr("x", (width / 2))
+      .attr("y", height + 45)
+      .attr("font-size", "20px")
+      .attr("font-weight", "bold")
+      .text("Win rate(%)")
+
+    //X axis 
+    svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x))
+      .attr("font-size", 20)
+
+    //Creating X axis gridlines (We dont need y axis since the data is printed only left to right)      
+    function make_x_grid() {
+      return d3.axisBottom(x).ticks(20);
+    }
+
+
+    //Appending gridlines first so that the gridlines appear below the rest of the graph 
+    svg.append("g")
+      .attr("class", "grid")
+      .attr("transform", "translate(0," + height + ")")
+      .attr("Opacity", 0.1)
+      .call(make_x_grid()
+        .tickSize(-height)
+        .tickFormat("")
+      )
+
+    svg.selectAll("bars")
+      .data(data)
+      .enter()
+      .append("rect")
+      .attr("x", x(0))
+      .attr("y", function (d) { return y(d.TeamName) + 20; })
+      .attr("width", function (d) { return x(d.Winrate); })
+      .attr("height", y.bandwidth() - 50)
+      .style("fill", function (d) { return (d["Color"]) })
+
+    //adding y axis 
+    svg.append("g")
+      .call(d3.axisLeft(y))
+
+
+    svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x))
+
+    svg.selectAll("Dummy")
+      .data(data)
+      .enter()
+      .append("circle")
+      .attr("cx", function (d) { return x(d[0]) })
+      .attr("cy", function (d) { return y(d[1]) })
+      .attr("r", 10)
   }
-    
-   
-  converttoCSV(json){
+
+
+  converttoCSV(json) {
     const replacer = (key, value) => value === null ? '' : value // specify how you want to handle null values here
     const header = Object.keys(json[0])
     let csv = json.map(row => header.map(fieldName => JSON.stringify(row[fieldName], replacer)).join(','))
     csv.unshift(header.join(','))
     csv = csv.join(',\r\n')
-    // console.log(csv)
   }
 
   render() {
-
     return (
       <MuiThemeProvider theme={theme}>
         <React.Fragment>
@@ -309,6 +355,11 @@ export class App extends React.Component {
               <Copyright />
             </Box>
           </Container>
+          {this.state.liquid.map((result) => {
+            return (
+              <h4>{result.opponent1} vs. {result.opponent2}</h4>
+            )
+          })}
           <div ref={this.myRef}>
           </div>
           {/* End footer */}
