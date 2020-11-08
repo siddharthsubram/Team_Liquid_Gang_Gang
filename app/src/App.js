@@ -13,6 +13,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import { Navbar } from "./Components/Navbar/Navbar";
+import * as d3 from "d3";
 
 function Copyright() {
   return (
@@ -130,6 +131,7 @@ export class App extends React.Component {
 
     return (
       <React.Fragment>
+      <script src="https://d3js.org/d3.v6.js"></script>
         <CssBaseline />
           <Navbar/>
         {/* Hero unit */}
