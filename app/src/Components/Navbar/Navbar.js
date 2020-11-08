@@ -23,14 +23,14 @@ export class Navbar extends React.Component {
               Map Pick
               </Link>
             <div class="dropdown">
-              <button class="dropbtn">COMPARE TEAMS</button>
+              <button class="dropbtn" style={{color: 'white'}}>COMPARE TEAMS</button>
               <div class="dropdown-content">
                 <a href="#">ASCENDING</a>
                 <a href="#">DESCENDING</a>
               </div>
             </div>
             <div class="dropdown">
-              <button class="dropbtn">PLAYERS</button>
+              <button class="dropbtn" style={{color: 'white'}}>PLAYERS</button>
               <div class="dropdown-content">
                 <a href="#">Kryptix</a>
                 <a href="#">ec1s</a>

@@ -167,10 +167,18 @@ export class App extends React.Component {
     }
 
     for (const l of fishdata) {
-      if (l['opponent1score'] > l['opponent2score'])
-        teamwins[l['opponent1']] = (teamwins[l['opponent1']] + 1) || 1;
-      else
-        teamwins[l['opponent2']] = (teamwins[l['opponent2']] + 1) || 1;
+      if (l['opponent1score'] > l['opponent2score']) {
+        if (l['opponent1'] === 'fish123')
+          teamwins['Team Liquid'] = (teamwins['Team Liquid'] + 1) || 1;
+        else 
+          teamwins[l['opponent1']] = (teamwins[l['opponent1']] + 1) || 1;
+      }
+      else {
+        if (l['opponent2'] === 'fish123')
+          teamwins['Team Liquid'] = (teamwins['Team Liquid'] + 1) || 1;
+        else 
+          teamwins[l['opponent2']] = (teamwins[l['opponent2']] + 1) || 1;
+      }
       totalgames++;
     }
 
@@ -189,7 +197,8 @@ export class App extends React.Component {
 
     let data = [];
     for (var key of Object.keys(teamwins)) {
-      data.push({ "TeamName": key, "Winrate": teamwins[key], "Color": '#5da9e8' });
+      if (teamwins[key] > 1)
+        data.push({ "TeamName": key, "Winrate": teamwins[key], "Color": '#5da9e8' });
     }
     // let myData = [
     //   { "TeamName": 'Team Liquid', "Winrate": 75, "Color": '#5da9e8' },
