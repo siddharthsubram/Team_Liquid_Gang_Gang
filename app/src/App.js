@@ -18,9 +18,9 @@ import { MuiThemeProvider, createMuiTheme, responsiveFontSizes } from '@material
 
 let theme = createMuiTheme({
   palette: {
-    type: "dark",
+    type: "light",
     primary: {
-      main: "#199bfc"
+      main: "#0f1923"
     }
   },
 });

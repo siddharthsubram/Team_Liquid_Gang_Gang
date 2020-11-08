@@ -18,34 +18,16 @@ export class Navbar extends React.Component {
             Team Liquid VALORANT
             </Typography>
           <nav>
-            <Link variant="button" color="textPrimary" href="#" className='link'>
+            <Link variant="button" color="textPrimary" href="#" className='MapPick'>
               Map Pick
               </Link>
-            <Link variant="button" color="textPrimary" href="#" className='link'>
+            <Link variant="button" color="textPrimary" href="#" className='CompareTeams'>
               Compare Teams
               </Link>
-            <Link variant="button" color="textPrimary" href="#" className='link'>
-              ec1s
-              </Link>
-            <Link variant="button" color="textPrimary" href="#" className='link'>
-              soulcas
-              </Link>
-            <Link variant="button" color="textPrimary" href="#" className='link'>
-              Kryptix
-              </Link>
-            <Link variant="button" color="textPrimary" href="#" className='link'>
-              L1NK
-              </Link>
-            <Link variant="button" color="textPrimary" href="#" className='link'>
-              ScreaM
-              </Link>
-            <Link variant="button" color="textPrimary" href="#" className='link'>
-              Sliggy
+            <Link variant="button" color="textPrimary" href="#" className='Players'>
+              Players
               </Link>
           </nav>
-          <Button href="#" color="primary" variant="outlined" className='link'>
-            Login
-            </Button>
         </Toolbar>
       </AppBar>
     );
