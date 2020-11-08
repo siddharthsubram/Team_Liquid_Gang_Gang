@@ -5,6 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
+import team_liquid from '../assets/Team_Liquid_2020.png';
 
 const useStyles = makeStyles((theme) => ({
   '@global': {
@@ -13,6 +14,10 @@ const useStyles = makeStyles((theme) => ({
       padding: 0,
       listStyle: 'none',
     },
+  },
+  logo: {
+    width: "4%",
+    height: "4%",
   },
   appBar: {
     borderBottom: `1px solid ${theme.palette.divider}`,
@@ -56,6 +61,7 @@ export default function Navbar() {
   return (
     <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
       <Toolbar className={classes.toolbar}>
+        <img className={classes.logo} src={team_liquid} alt="Team Liquid"/>
         <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
           Team Liquid VALORANT
           </Typography>
