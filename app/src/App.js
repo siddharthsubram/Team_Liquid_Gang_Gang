@@ -20,7 +20,12 @@ import ec1s from './assets/ec1s.PNG';
 import l1nk from './assets/l1nk.png';
 import scream from './assets/scream.PNG';
 import soulcas from './assets/soulcas.PNG';
-import sliggy from './assets/sliggy.png';
+import agentpic from './assets/agentphoto.png';
+import haven from './assets/haven.png';
+import bind from './assets/bind.png';
+import split from './assets/split.png';
+import ascent from './assets/ascent.png';
+import './App.css';
 
 let theme = createMuiTheme({
   palette: {
@@ -34,24 +39,31 @@ let theme = createMuiTheme({
 
 theme = responsiveFontSizes(theme);
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Created for Liquid Hacks'}
-      {/* <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '} */}
-      {new Date().getFullYear()}
-    </Typography>
-  );
-}
+const maps = [
+  {
+    title: 'Haven', 
+    pic: haven,
+  },
+  {
+    title: 'Bind', 
+    pic: bind,
+  },
+  {
+    title: 'Split', 
+    pic: split,
+  },
+  {
+    title: 'Ascent', 
+    pic: ascent,
+  },
+]
 
 const tiers = [
   {
     title: 'Kyptix',
     subheader: 'James Affleck',
     pic: kryptix,
-    description: ['10 users included', '2 GB of storage', 'Help center access', 'Email support'],
+    description: ['Cypher', 'Killjoy'],
     buttonText: 'Sign up for free',
     buttonVariant: 'outlined',
   },
@@ -60,10 +72,8 @@ const tiers = [
     subheader: 'Adam Eccles',
     pic: ec1s,
     description: [
-      '20 users included',
-      '10 GB of storage',
-      'Help center access',
-      'Priority email support',
+      'Breach',
+      'Omen',
     ],
     buttonText: 'Get started',
     buttonVariant: 'contained',
@@ -73,10 +83,8 @@ const tiers = [
     subheader: 'Adil Benrlitom',
     pic: scream,
     description: [
-      '50 users included',
-      '30 GB of storage',
-      'Help center access',
-      'Phone & email support',
+      'Sage',
+      'Reyna',
     ],
     buttonText: 'Contact us',
     buttonVariant: 'outlined',
@@ -86,10 +94,8 @@ const tiers = [
     subheader: 'Dom Sulcas',
     pic: soulcas,
     description: [
-      '50 users included',
-      '30 GB of storage',
-      'Help center access',
-      'Phone & email support',
+      'Raze',
+      'Phoenix',
     ],
     buttonText: 'Contact us',
     buttonVariant: 'outlined',
@@ -99,31 +105,11 @@ const tiers = [
     subheader: 'Travis Mendoza',
     pic: l1nk,
     description: [
-      '50 users included',
-      '30 GB of storage',
-      'Help center access',
-      'Phone & email support',
+      'Sage',
+      'Reyna',
     ],
     buttonText: 'Contact us',
     buttonVariant: 'outlined',
-  },
-];
-const footers = [
-  {
-    title: 'Company',
-    description: ['Team', 'History', 'Contact us', 'Locations'],
-  },
-  {
-    title: 'Features',
-    description: ['Cool stuff', 'Random feature', 'Team feature', 'Developer stuff', 'Another one'],
-  },
-  {
-    title: 'Resources',
-    description: ['Resource', 'Resource name', 'Another resource', 'Final resource'],
-  },
-  {
-    title: 'Legal',
-    description: ['Privacy policy', 'Terms of use'],
   },
 ];
 
@@ -203,7 +189,7 @@ export class App extends React.Component {
 
     let data = [];
     for (var key of Object.keys(teamwins)) {
-      data.push({"TeamName": key, "Winrate": teamwins[key], "Color": '#5da9e8'});
+      data.push({ "TeamName": key, "Winrate": teamwins[key], "Color": '#5da9e8' });
     }
     // let myData = [
     //   { "TeamName": 'Team Liquid', "Winrate": 75, "Color": '#5da9e8' },
@@ -239,7 +225,7 @@ export class App extends React.Component {
     svg.append("g")
       .call(d3.axisLeft(y))
       .attr("font-size", 20)
-      
+
 
     svg.append("text")
       .attr("x", (width / 2))
@@ -277,10 +263,10 @@ export class App extends React.Component {
       .attr("x", x(0))
       .attr("y", function (d) { return y(d.TeamName) + 5 })
       .attr("width", function (d) { return x(d.Winrate); })
-      .attr("height", y.bandwidth() - 20 )
+      .attr("height", y.bandwidth() - 20)
       .style("fill", function (d) { return (d["Color"]) })
 
-  
+
   }
 
 
@@ -299,17 +285,11 @@ export class App extends React.Component {
           <CssBaseline />
           <Navbar />
           {/* Hero unit */}
-          <Container maxWidth="sm" component="main" className='heroContent'>
-            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-              Pricing
-          </Typography>
-            <Typography variant="h5" align="center" color="textSecondary" component="p">
-              Quickly build an effective pricing table for your potential customers with this layout.
-              It&apos;s built with default Material-UI components with little customization.
-          </Typography>
-          </Container>
           {/* End hero unit */}
           <Container maxWidth="md" component="main">
+          <Container maxWidth="sm" component="main" className='heroContent'>
+            <img src={agentpic} className='agent-pic' alt="Valorant Agents" />
+          </Container>
             <Grid container spacing={5} alignItems="flex-end">
               {tiers.map((tier) => (
                 // Enterprise card is full width at sm breakpoint
@@ -324,45 +304,48 @@ export class App extends React.Component {
                     />
                     <CardContent>
                       <div className='cardPricing'>
-                        <img className='pic' src={tier.pic} alt="Player Pic"/>
+                        <img className='pic' src={tier.pic} alt="Player Pic" />
                       </div>
-                      {/* <ul>
+                      <ul>
                         {tier.description.map((line) => (
                           <Typography component="li" variant="subtitle1" align="center" key={line}>
                             {line}
                           </Typography>
                         ))}
-                      </ul> */}
+                      </ul>
                     </CardContent>
                   </Card>
                 </Grid>
               ))}
             </Grid>
           </Container>
-          {/* Footer */}
-          <Container maxWidth="md" component="footer" className='footer'>
-            <Grid container spacing={4} justify="space-evenly">
-              {footers.map((footer) => (
-                <Grid item xs={6} sm={3} key={footer.title}>
-                  <Typography variant="h6" color="textPrimary" gutterBottom>
-                    {footer.title}
-                  </Typography>
-                  <ul>
-                    {footer.description.map((item) => (
-                      <li key={item}>
-                        <Link href="#" variant="subtitle1" color="textSecondary">
-                          {item}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
+
+
+          <Container maxWidth="md" component="main">
+            <Grid container spacing={5} alignItems="flex-end">
+              {maps.map((tier) => (
+                // Enterprise card is full width at sm breakpoint
+                <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
+                  <Card>
+                    <CardHeader
+                      title={tier.title}
+                      titleTypographyProps={{ align: 'center' }}
+                      subheaderTypographyProps={{ align: 'center' }}
+                      className='cardHeader'
+                    />
+                    <CardContent>
+                      <div className='cardPricing'>
+                        <img className='pic' src={tier.pic} alt="Player Pic" />
+                      </div>
+                    </CardContent>
+                  </Card>
                 </Grid>
               ))}
             </Grid>
-            <Box mt={5}>
-              <Copyright />
-            </Box>
           </Container>
+          <div className='vid-wrapper'>
+            <iframe className='vid'src="https://www.youtube.com/embed/FH5C16YsmXA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
           <div ref={this.myRef}>
           </div>
           {this.state.liquid.map((result) => {

@@ -37,6 +37,20 @@
   }
 }
 
+.agent-pic {
+  max-height: 400px;
+  margin: 15px;
+}
+
+.vid-wrapper {
+  justify-content: center;
+  padding: 5% 25%;
+}
+
+.vid {
+  width: 760px;
+  height: 415px;
+}
 
 /*
 const useStyles = makeStyles((theme) => ({
