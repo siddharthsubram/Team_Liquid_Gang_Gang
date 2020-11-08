@@ -25,6 +25,7 @@ let theme = createMuiTheme({
   },
 });
 
+
 theme = responsiveFontSizes(theme);
 
 function Copyright() {
@@ -110,27 +111,18 @@ export class App extends React.Component {
     this.getData('matchfeed', 'valorant');
     let size = 500;
     console.log(this.myRef);
-
-          
-    d3.csv("tasdfasdfasf.csv").then(function(data){
-        console.log(data); 
-    })
-      
    
       var data = [ 
-          //["X" , "Y"],
-          [1 , 5], 
-          [5 , 1], 
-          [3 , 2], 
-          [4 , 2]
-          
+         {"TeamName":'Team Liquid', "Winrate":75, "Color": '#5da9e8'}, 
+         {"TeamName":'G2 Esports', "Winrate":20, "Color": '#ba9c9f' }, 
+         {"TeamName":'Funplus Phoenix', "Winrate":55, "Color": '#ff0015'}, 
+         {"TeamName":'Fish123', "Winrate":63, "Color": 'green' }, 
+         {"TeamName":'OfflineTV', "Winrate":23, "Color": 'Pink'}
       ]
    
-      // console.log(data) 
-      
-      
-       var margin = {top: 10, right: 30, bottom: 90, left: 100},
-            width = 700 - margin.left - margin.right,
+
+       var margin = {top: 10, right: 30, bottom: 90, left: 200},
+            width = 1500 - margin.left - margin.right,
             height = 700 - margin.top - margin.bottom;
 
         // creating SVG
@@ -142,30 +134,60 @@ export class App extends React.Component {
       
          // Creating X axis scale
         var x = d3.scaleLinear()
-            .domain([0, 10])
+            .domain([0, 100])
             .range([ 0, width])
 
         //Creating Y axis scale  
-        var y = d3.scaleLinear()
-            .domain([0, 10])
+        var y = d3.scaleBand()
+            .domain(data.map(function(d){return d.TeamName}))
             .range([ height, 0])  
-      
+        
        //adding y axis 
-            svg.append("g")
-                .call(d3.axisLeft(y))
+        svg.append("g")
+            .call(d3.axisLeft(y))
+            .attr("font-size",20)
 
-
+        svg.append("text")
+            .attr("x", (width / 2))
+            .attr("y", height + 45)
+            .attr("font-size", "20px")
+            .attr("font-weight", "bold")
+            .text("Win rate(%)")
+      
+        //X axis 
         svg.append("g")
             .attr("transform", "translate(0," + height + ")")
             .call(d3.axisBottom(x))
+            .attr("font-size",20)
       
-        svg.selectAll("Dummy")
+        //Creating X axis gridlines (We dont need y axis since the data is printed only left to right)      
+         function make_x_grid() {
+                return d3.axisBottom(x).ticks(20); 
+        }
+
+
+        //Appending gridlines first so that the gridlines appear below the rest of the graph 
+        svg.append("g")			
+          .attr("class", "grid")
+          .attr("transform", "translate(0," + height + ")")
+          .attr("Opacity", 0.1)
+          .call(make_x_grid()
+              .tickSize(-height)
+              .tickFormat("")
+             
+        )
+      
+      
+        svg.selectAll("bars")
             .data(data)
             .enter()
-            .append("circle")
-            .attr("cx", function (d) {return x(d[0]) } )
-            .attr("cy", function (d) {return y(d[1]) })
-            .attr("r", 10)   
+            .append("rect")
+            .attr("x", x(0) )
+            .attr("y", function(d) { return y(d.TeamName) + 20; })
+            .attr("width", function(d) { return x(d.Winrate); })
+            .attr("height", y.bandwidth()- 50 )
+            .style("fill", function(d){ return(d["Color"])})
+             
       
   }
 
