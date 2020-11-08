@@ -13,11 +13,12 @@ def index(datatype, wiki):
     params = {
         'apikey': 'zIAPhNbTNS1xT5aEvAO0H4oE4aYrGLr04cjgx8LAqrgEj3iWPI27BG02RO09VgSHAuivIptunkuDZMQ8xjGMTKBXzp68v7e1AIbZBoad42I5dcGbyp9CjFg2czt1g3ak',
         'wiki': wiki,
-        'type': 'player',
-        'name': 'ScreaM',
-        'conditions': '[[pagename::ScreaM/Matches]]',
+        'type': 'team',
+        'name': 'Team Liquid',
+        'rawstreams': 'true',
+        # 'conditions': '[[pagename::ScreaM/Matches]]',
         # 'query': 'opponent1, opponent2, date',
-        'limit': 5,
+        'limit': 50,
     }
     response = requests.post(url, data=params)
     return response.content, response.status_code
