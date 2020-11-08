@@ -15,6 +15,12 @@ import { Navbar } from "./Components/Navbar/Navbar";
 import axios from 'axios';
 import * as d3 from "d3";
 import { MuiThemeProvider, createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'; // responseiveFontSizes needs testing
+import kryptix from './assets/kryptix.PNG';
+import ec1s from './assets/ec1s.PNG';
+import l1nk from './assets/l1nk.png';
+import scream from './assets/scream.PNG';
+import soulcas from './assets/soulcas.PNG';
+import sliggy from './assets/sliggy.png';
 
 let theme = createMuiTheme({
   palette: {
@@ -31,28 +37,28 @@ theme = responsiveFontSizes(theme);
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
+      {'Created for Liquid Hacks'}
+      {/* <Link color="inherit" href="https://material-ui.com/">
         Your Website
-      </Link>{' '}
+      </Link>{' '} */}
       {new Date().getFullYear()}
-      {'.'}
     </Typography>
   );
 }
 
 const tiers = [
   {
-    title: 'Free',
-    price: '0',
+    title: 'Kyptix',
+    subheader: 'James Affleck',
+    pic: kryptix,
     description: ['10 users included', '2 GB of storage', 'Help center access', 'Email support'],
     buttonText: 'Sign up for free',
     buttonVariant: 'outlined',
   },
   {
-    title: 'Pro',
-    subheader: 'Most popular',
-    price: '15',
+    title: 'ec1s',
+    subheader: 'Adam Eccles',
+    pic: ec1s,
     description: [
       '20 users included',
       '10 GB of storage',
@@ -63,8 +69,35 @@ const tiers = [
     buttonVariant: 'contained',
   },
   {
-    title: 'Enterprise',
-    price: '30',
+    title: 'ScreaM',
+    subheader: 'Adil Benrlitom',
+    pic: scream,
+    description: [
+      '50 users included',
+      '30 GB of storage',
+      'Help center access',
+      'Phone & email support',
+    ],
+    buttonText: 'Contact us',
+    buttonVariant: 'outlined',
+  },
+  {
+    title: 'soulcas',
+    subheader: 'Dom Sulcas',
+    pic: soulcas,
+    description: [
+      '50 users included',
+      '30 GB of storage',
+      'Help center access',
+      'Phone & email support',
+    ],
+    buttonText: 'Contact us',
+    buttonVariant: 'outlined',
+  },
+  {
+    title: 'L1NK',
+    subheader: 'Travis Mendoza',
+    pic: l1nk,
     description: [
       '50 users included',
       '30 GB of storage',
@@ -172,20 +205,15 @@ export class App extends React.Component {
     for (var key of Object.keys(teamwins)) {
       data.push({"TeamName": key, "Winrate": teamwins[key], "Color": '#5da9e8'});
     }
+    // let myData = [
+    //   { "TeamName": 'Team Liquid', "Winrate": 75, "Color": '#5da9e8' },
+    //   { "TeamName": 'G2 Esports', "Winrate": 20, "Color": '#ba9c9f' },
+    //   { "TeamName": 'Funplus Phoenix', "Winrate": 55, "Color": '#ff0015' },
+    //   { "TeamName": 'Fish123', "Winrate": 63, "Color": 'green' },
+    //   { "TeamName": 'OfflineTV', "Winrate": 23, "Color": 'Pink' }
+    // ]
     console.log('win data', data);
-    /*  let data2 = [
-       { "TeamName": 'Team Liquid', "Winrate": 75, "Color": '#5da9e8' },
-       { "TeamName": 'G2 Esports', "Winrate": 20, "Color": '#ba9c9f' },
-       { "TeamName": 'Funplus Phoenix', "Winrate": 55, "Color": '#ff0015' },
-       { "TeamName": 'Fish123', "Winrate": 63, "Color": 'green' },
-       { "TeamName": 'OfflineTV', "Winrate": 23, "Color": 'Pink' }
-     ]
-     
-     console.log(data2)
 
-    for ( let i = 0; i < data2.length; i++){
-        data.push(data2[i])
-    }*/
     var margin = { top: 10, right: 30, bottom: 90, left: 200 },
       width = 1500 - margin.left - margin.right,
       height = 700 - margin.top - margin.bottom;
@@ -292,31 +320,20 @@ export class App extends React.Component {
                       subheader={tier.subheader}
                       titleTypographyProps={{ align: 'center' }}
                       subheaderTypographyProps={{ align: 'center' }}
-                      action={tier.title === 'Pro' ? <StarIcon /> : null}
                       className='cardHeader'
                     />
                     <CardContent>
                       <div className='cardPricing'>
-                        <Typography component="h2" variant="h3" color="textPrimary">
-                          ${tier.price}
-                        </Typography>
-                        <Typography variant="h6" color="textSecondary">
-                          /mo
-                      </Typography>
+                        <img className='pic' src={tier.pic} alt="Player Pic"/>
                       </div>
-                      <ul>
+                      {/* <ul>
                         {tier.description.map((line) => (
                           <Typography component="li" variant="subtitle1" align="center" key={line}>
                             {line}
                           </Typography>
                         ))}
-                      </ul>
+                      </ul> */}
                     </CardContent>
-                    <CardActions>
-                      <Button fullWidth variant={tier.buttonVariant} color="primary">
-                        {tier.buttonText}
-                      </Button>
-                    </CardActions>
                   </Card>
                 </Grid>
               ))}
@@ -346,13 +363,13 @@ export class App extends React.Component {
               <Copyright />
             </Box>
           </Container>
+          <div ref={this.myRef}>
+          </div>
           {this.state.liquid.map((result) => {
             return (
               <h4>{result.opponent1} vs. {result.opponent2}</h4>
             )
           })}
-          <div ref={this.myRef}>
-          </div>
           {/* End footer */}
         </React.Fragment>
       </MuiThemeProvider>
