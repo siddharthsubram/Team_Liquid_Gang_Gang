@@ -205,8 +205,10 @@ export class App extends React.Component {
     //   { "TeamName": 'G2 Esports', "Winrate": 20, "Color": '#ba9c9f' },
     //   { "TeamName": 'Funplus Phoenix', "Winrate": 55, "Color": '#ff0015' },
     //   { "TeamName": 'Fish123', "Winrate": 63, "Color": 'green' },
-    //   { "TeamName": 'OfflineTV', "Winrate": 23, "Color": 'Pink' }
+    //   { "TeamName": 'OfflineTV', "Winrate": 23, "Color": 'Pink' 
     // ]
+    
+      
     console.log('win data', data);
 
     var margin = { top: 10, right: 30, bottom: 90, left: 200 },
@@ -222,13 +224,16 @@ export class App extends React.Component {
 
     // Creating X axis scale
     var x = d3.scaleLinear()
-      .domain([0, 40])
+      .domain([0, 60])
       .range([0, width])
 
     //Creating Y axis scale  
     var y = d3.scaleBand()
       .domain(data.map(function (d) { return d.TeamName }))
       .range([height, 0])
+
+    
+    
 
     //adding y axis 
     svg.append("g")
@@ -275,7 +280,14 @@ export class App extends React.Component {
       .attr("height", y.bandwidth() - 20)
       .style("fill", function (d) { return (d["Color"]) })
 
+ 
+   
 
+      
+  
+      
+
+  
   }
 
 
