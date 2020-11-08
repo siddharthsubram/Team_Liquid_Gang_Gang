@@ -41,19 +41,19 @@ theme = responsiveFontSizes(theme);
 
 const maps = [
   {
-    title: 'Haven', 
+    title: 'Haven',
     pic: haven,
   },
   {
-    title: 'Bind', 
+    title: 'Bind',
     pic: bind,
   },
   {
-    title: 'Split', 
+    title: 'Split',
     pic: split,
   },
   {
-    title: 'Ascent', 
+    title: 'Ascent',
     pic: ascent,
   },
 ]
@@ -170,13 +170,13 @@ export class App extends React.Component {
       if (l['opponent1score'] > l['opponent2score']) {
         if (l['opponent1'] === 'fish123')
           teamwins['Team Liquid'] = (teamwins['Team Liquid'] + 1) || 1;
-        else 
+        else
           teamwins[l['opponent1']] = (teamwins[l['opponent1']] + 1) || 1;
       }
       else {
         if (l['opponent2'] === 'fish123')
           teamwins['Team Liquid'] = (teamwins['Team Liquid'] + 1) || 1;
-        else 
+        else
           teamwins[l['opponent2']] = (teamwins[l['opponent2']] + 1) || 1;
       }
       totalgames++;
@@ -196,19 +196,17 @@ export class App extends React.Component {
     });
 
     let data = [];
-    for (var key of Object.keys(teamwins)) {
-      if (teamwins[key] > 1)
-        data.push({ "TeamName": key, "Winrate": teamwins[key], "Color": '#5da9e8' });
+    let colors = {
+      'Ninjas in Pyjamas': '#a88b65',  
+      'G2 Esports': '#f8f9fa', 
+      'Team Liquid': '#0a1723', 
+      'FunPlus Pheonix': '#ef2839'
     }
-    // let myData = [
-    //   { "TeamName": 'Team Liquid', "Winrate": 75, "Color": '#5da9e8' },
-    //   { "TeamName": 'G2 Esports', "Winrate": 20, "Color": '#ba9c9f' },
-    //   { "TeamName": 'Funplus Phoenix', "Winrate": 55, "Color": '#ff0015' },
-    //   { "TeamName": 'Fish123', "Winrate": 63, "Color": 'green' },
-    //   { "TeamName": 'OfflineTV', "Winrate": 23, "Color": 'Pink' 
-    // ]
-    
-      
+    for (var key of Object.keys(teamwins)) {
+      if (teamwins[key] > 1) {
+        data.push({ "TeamName": key, "Winrate": teamwins[key], "Color": colors[key] });
+      }
+    }
     console.log('win data', data);
 
     var margin = { top: 10, right: 30, bottom: 90, left: 200 },
@@ -279,17 +277,7 @@ export class App extends React.Component {
       .attr("width", function (d) { return x(d.Winrate); })
       .attr("height", y.bandwidth() - 20)
       .style("fill", function (d) { return (d["Color"]) })
-
- 
-   
-
-      
-  
-      
-
-  
   }
-
 
   converttoCSV(json) {
     const replacer = (key, value) => value === null ? '' : value // specify how you want to handle null values here
@@ -314,7 +302,7 @@ export class App extends React.Component {
             <Grid container spacing={5} alignItems="flex-end">
               {tiers.map((tier) => (
                 // Enterprise card is full width at sm breakpoint
-                <Grid item key={tier.title} xs={6 } sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
+                <Grid item key={tier.title} xs={6} sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
                   <Card>
                     <CardHeader
                       title={tier.title}
@@ -342,7 +330,7 @@ export class App extends React.Component {
           </Container>
 
           <div className='vid-wrapper'>
-            <iframe className='vid'src="https://www.youtube.com/embed/FH5C16YsmXA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe className='vid' src="https://www.youtube.com/embed/FH5C16YsmXA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
           <div ref={this.myRef}>
           </div>
