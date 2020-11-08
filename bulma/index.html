@@ -5,23 +5,54 @@
     <title>TL VALORANT</title>
     <link rel="shortcut icon" href="assets/val.png"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+   
+
+    <style>
+        .float-left-img{
+            clear:both;
+            float:left;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border: darkblue 3px;
+          
+        }
+
+
+        .float-right-img{
+            clear:both;
+            float:right;
+            margin-left: 10px;
+            margin-bottom: 10px;
+            border: darkblue 3px;
+            
+        }
+
+        .clear{
+            margin-top: 20px;
+            clear: both;
+        }
+
+     
+    </style>
 </head>
 
 <body>
     <a name="top"></a>
-    <nav class="navbar is-link has-shadow">
+    <nav class="navbar is-black has-shadow">
         <!--TL logo-->
         <div class="navbar-brand">
-            <a class="navbar-item">
-                <img src="assets/Capture.PNG" style = "min-height: 100px" class = "py-2 px-2" alt="site logo" id="tl-logo">
-            </a>
+            <div class="navbar-item">
+                <img src="assets/Team_Liquid_2020.png" style = "max-height: 100px" class = "py-4 px-2" alt="site logo" id="tl-logo">
+            </div>
+            <div class="navbar-item"> <img src="assets/valorant title.png" style="max-height: 100px;" class="py-5 px-3"></div>
             <a class="class navbar-burger" id="burger">
                 <span></span>
                 <span></span>
                 <span></span>
             </a>
         </div>
-        <h1 class= "my-6 " style="color: darkblue;"  >Team Liquid VALORANT</h1>
+     
+       
         <div class="navbar-menu" id = "nav-links">
             <div class="navbar-end">
                 <a href="#mappicks" class="navbar-item">Map Pick</a>
@@ -53,6 +84,7 @@
         </div>
     </section>
    
+ 
 
     <!--Player cards-->
     <section class="section" id="playerCards">
@@ -154,11 +186,11 @@
     <section class="section is-small">
         <div class="container">
             <div class="columns has-text-centered">
-                <div class="column is-3">
-                    <div class="message is-link">
+                <div class="column is-4">
+                    <div class="message is-danger">
                         <div class="message-header"><h1>Bio</h1></div>
                         <div class="message-body">
-                            <p class = "is-size-5-desktop is-size-7-mobile "> Formerly known as fish123, the core of <strong>ec1s</strong>, <strong>soulcas</strong>, <strong>Kryptix</strong>, and <strong>L1NK</strong> join up with superstar <strong>ScreaM</strong> and coach <strong>Sliggy</strong> to form one of Europe's best VALORANT teams. On August 7th, 2020, Team Liquid announced that they have entered the VALORANT scene by signing fish123.</p>
+                            <p class = "is-size-5-desktop is-size-7-mobile"> Formerly known as fish123, the core of <strong>ec1s</strong>, <strong>soulcas</strong>, <strong>Kryptix</strong>, and <strong>L1NK</strong> join up with superstar <strong>ScreaM</strong> and coach <strong>Sliggy</strong> to form one of Europe's best VALORANT teams. On August 7th, 2020, Team Liquid announced that they have entered the VALORANT scene by signing fish123.</p>
                         </div>
                     </div>
                     
@@ -172,12 +204,14 @@
                 </div>
                 
                 <div class="column is-3">
-                    <iframe width="711" height="400" src="https://www.youtube.com/embed/FH5C16YsmXA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/FH5C16YsmXA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                
             </div>
         </div>
     </section>
+
+    <hr style=" height:5px; width: 50%; border-width:0; margin: auto; color:darkblue; background-color:darkblue">
 
     <section class="section has-text-centered">
         <div class="container">
@@ -248,8 +282,8 @@
     <div class = "modal" id="havenRate">
         <div class="modal-background"></div>
         <div class="modal-content has-background-white py-5 px-5">
-            <h3 class="title mb-6"># of Times Picked: </h3>
-            <h3 class="title mb-6">Haven Winrate: </h3>
+            <h3 class="title mb-6"># of Times Played: 8</h3>
+            <h3 class="title mb-6">Haven Winrate: 7/8(87.5%)</h3>
         </div>
         <button class="modal-close is-large" aria-label="close" id="havenClose"></button>
     </div>
@@ -257,8 +291,8 @@
     <div class = "modal" id="bindRate">
         <div class="modal-background"></div>
         <div class="modal-content has-background-white py-5 px-5">
-            <h3 class="title mb-6"># of Times Picked: </h3>
-            <h3 class="title mb-6">Bind Winrate: </h3>
+            <h3 class="title mb-6"># of Times Played: 8</h3>
+            <h3 class="title mb-6">Bind Winrate: 3/8(37.5%)</h3>
         </div>
         <button class="modal-close is-large" aria-label="close" id="bindClose"></button>
     </div>
@@ -266,8 +300,8 @@
     <div class = "modal" id="splitRate">
         <div class="modal-background"></div>
         <div class="modal-content has-background-white py-5 px-5">
-            <h3 class="title mb-6"># of Times Picked: </h3>
-            <h3 class="title mb-6">Split Winrate: </h3>
+            <h3 class="title mb-6"># of Times Played: 5</h3>
+            <h3 class="title mb-6">Split Winrate: 3/5(60%) </h3>
         </div>
         <button class="modal-close is-large" aria-label="close" id="splitClose"></button>
     </div>
@@ -275,8 +309,8 @@
     <div class = "modal" id="ascentRate">
         <div class="modal-background"></div>
         <div class="modal-content has-background-white py-5 px-5">
-            <h3 class="title mb-6"># of Times Picked: </h3>
-            <h3 class="title mb-6">Ascent Winrate: </h3>
+            <h3 class="title mb-6"># of Times Played: 4</h3>
+            <h3 class="title mb-6">Ascent Winrate: 2/4(50%)</h3>
         </div>
         <button class="modal-close is-large" aria-label="close" id="ascentClose"></button>
     </div>
@@ -285,6 +319,7 @@
 
 
     <!--Comparing to other teams (ahem G2)-->
+    <hr style=" height:5px; width: 50%; border-width:0; margin: auto; color:darkblue; background-color:darkblue">
 
     <section class="section has-text-right">
         <div class="container">
@@ -294,66 +329,82 @@
     </section>
 
 
-   
+   <hr style=" height:5px; width: 50%; border-width:0; margin: auto; color:darkblue; background-color:darkblue">
   
-
-   <section class="section is-medium has-text-left">
+    <!--Players-->
+   <section class="section is-big has-text-left">
     <div class="container">
         <h1 id="Kryptix" class="title">Kryptix</h1>
-        <img src="assets/kryptix.PNG" style="max-height: 300px;" alt="ec1s">
+           <img class="float-left-img" src="assets/kryptix.PNG" style="max-height: 300px;" alt="ec1s">
+            <h3 class="float-left-img" style="margin-right: 50%;">James "Kryptix" Affleck is a British player who currently plays for Team Liquid. He retired from professional Counter-Strike: Global Offensive on April 18, 2020 to focus on VALORANT.</h3>
+               
     </div>
     </section>
 
+    <hr class ="clear" style=" height:2px; width: 25%; border-width:0; margin: auto; color:navy; background-color:navy">
 
-    <section class="section is-medium has-text-right">
+    <section class="section is-big has-text-right">
         <div class="container">
-            <h1 id="ec1s" class="title">ec1s</h1>
-            <img src="assets/ec1s.PNG" style="max-height: 300px;" alt="ec1s">
+            <h1 id="ec1s" class="title float-right-img">ec1s</h1>
+            <img class="float-right-img" src="assets/ec1s.PNG" style="max-height: 300px;" alt="ec1s">
+            <h3 class="float-right-img" style="margin-left: 50%;">Adam "ec1s" Eccles is a British player who currently plays for Team Liquid. He retired from professional Counter-Strike: Global Offensive on April 18, 2020 to focus on VALORANT.</h3>
+        </div>
+    </section>
+
+    <hr class ="clear" style=" height:2px; width: 25%; border-width:0; margin: auto; color:navy; background-color:navy">
+
+    <section class="section is-big has-text-left">
+        <div class="container">
+            <h1 id="ScreaM" class="title float-left-img">ScreaM</h1>
+            <img class="float-left-img" src="assets/scream.PNG" style="max-height: 300px;" alt="ScreaM">
+            <h3 class="float-left-img"style="margin-right: 50%;">Adil "ScreaM" Benrlitom is a Belgian player who currently plays for Team Liquid. He is an ex-professional Counter-Strike: Global Offensive player who played for various notable teams, including G2 Esports whom he helped reach #2 in the world in 2016.</h3>
+        </div>
+    </section>
+
+    <hr class ="clear" style=" height:2px; width: 25%; border-width:0; margin: auto; color:navy; background-color:navy">
+
+    <section class="section is-small has-text-right">
+        <div class="container">
+            <h1 id="soulcas" class="title float-right-img">soulcas</h1>
+            <img class="float-right-img" src="assets/soulcas.PNG" alt="soulcas" style="max-height: 300px;">
+            <h3 class="float-right-img"style="margin-left: 50%;">Dom "soulcas" Sulcas is a British player who currently plays for Team Liquid. He retired from professional Counter-Strike: Global Offensive on April 18, 2020 to focus on VALORANT.</h3>
+        </div>
+    </section>
+
+    <hr class ="clear" style=" height:2px; width: 25%; border-width:0; margin: auto; color:navy; background-color:navy">
+
+    <section class="section is-small has-text-left">
+        <div class="container">
+            <h1 id="L1NK" class="title float-left-img">L1NK</h1>
+            <img class="float-left-img" src="assets/l1nk.png" alt="L1NK" style="max-height: 300px;">
+            <h3 class="float-left-img"style="margin-right: 50%;">Travis "L1NK" Mendoza is a British player who currently plays for Team Liquid. He retired from professional Counter-Strike: Global Offensive on April 18, 2020 to focus on VALORANT.</h3>
+        </div>
+    </section>
+
+    <hr class ="clear" style=" height:2px; width: 25%; border-width:0; margin: auto; color:navy; background-color:navy">
+
+    <section class="section is-small has-text-right">
+        <div class="container">
+            <h1 id="Sliggy" class="title float-right-img">Sliggy</h1>
+            <img class="title float-right-img" src="assets/600px-Team_Liquid_Sliggy.jpeg" alt="Sliggy" style="max-height: 300px;">
+            <h3 class="float-right-img" style="margin-left: 50%;">Connor "Sliggy" Blomfield is a British coach for Team Liquid. He is a retired British professional Counter-Strike: Global Offensive observer, former professional Counter-Strike: Global Offensive player, coach, and Counter-Strike: Source player.</h3>
         </div>
     </section>
 
 
-    <section class="section is-medium has-text-left">
-        <div class="container">
-            <h1 id="ScreaM" class="title">ScreaM</h1>
-            <img src="assets/scream.PNG" style="max-height: 300px;" alt="ScreaM">
-        </div>
-    </section>
 
-
-    <section class="section is-medium has-text-right">
-        <div class="container">
-            <h1 id="soulcas" class="title">soulcas</h1>
-            <img src="assets/soulcas.PNG" alt="soulcas" style="max-height: 300px;">
-        </div>
-    </section>
-
-
-    <section class="section is-medium has-text-left">
-        <div class="container">
-            <h1 id="L1NK" class="title">L1NK</h1>
-            <img src="assets/l1nk.png" alt="L1NK" style="max-height: 300px;">
-        </div>
-    </section>
-
-
-    <section class="section is-medium has-text-right">
-        <div class="container">
-            <h1 id="Sliggy" class="title">Sliggy</h1>
-            <img src="assets/600px-Team_Liquid_Sliggy.jpeg" alt="Sliggy" style="max-height: 300px;">
-        </div>
-    </section>
-
-
-
-    <footer class="footer">
+    <footer class="footer clear">
         <div class="content has-text-centered">
             <a href="#top"><button class="is-rounded is-warning is-medium">Top of Page</button></a>
             <br>
-            <p>Created for Liquid Hacks 2020 (11/7/2020)</p>
+            <p>Created for Liquid Hacks (11/7/2020)
+                <br>
+                Sources: Liquipedia, Instagram
+            </p>
         </div>
     </footer>
 
     <script src="index.js"></script>
+    <script src="style1.css"></script>
 </body>
 </html>
