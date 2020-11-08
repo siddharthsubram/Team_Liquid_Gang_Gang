@@ -6,6 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import team_liquid from '../../assets/Team_Liquid_2020.png';
 import './Navbar.css';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 export class Navbar extends React.Component {
   // const classes = useStyles();
@@ -24,9 +26,17 @@ export class Navbar extends React.Component {
             <Link variant="button" color="textPrimary" href="#" className='CompareTeams'>
               Compare Teams
               </Link>
-            <Link variant="button" color="textPrimary" href="#" className='Players'>
-              Players
-              </Link>
+            <div class="dropdown">
+              <button class="dropbtn">PLAYERS</button>
+              <div class="dropdown-content">
+                <a href="#">Kryptix</a>
+                <a href="#">ec1s</a>
+                <a href="#">ScreaM</a>
+                <a href="#">soulcas</a>
+                <a href="#">L1NK</a>
+                <a href="#">Sliggy</a>
+              </div>
+            </div>
           </nav>
         </Toolbar>
       </AppBar>
