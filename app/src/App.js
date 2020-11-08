@@ -106,7 +106,7 @@ export class App extends React.Component {
   componentDidMount() {
     // const endpoints = ['team', 'match', 'game', 'tournament'];
     // for (const endpt of endpoints)
-    this.getData('team', 'valorant');
+    this.getData('matchfeed', 'valorant');
     let size = 500;
     console.log(this.myRef);
     let svg = d3.select(this.myRef.current)

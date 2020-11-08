@@ -11,7 +11,12 @@ def index(datatype, wiki):
     url = 'https://api.liquipedia.net/api/v1/' + datatype
     params = {
         'apikey': 'zIAPhNbTNS1xT5aEvAO0H4oE4aYrGLr04cjgx8LAqrgEj3iWPI27BG02RO09VgSHAuivIptunkuDZMQ8xjGMTKBXzp68v7e1AIbZBoad42I5dcGbyp9CjFg2czt1g3ak',
-        'wiki': wiki
+        'wiki': wiki,
+        'type': 'player',
+        'name': 'ScreaM',
+        'conditions': '[[pagename::ScreaM/Matches]]',
+        # 'query': 'opponent1, opponent2, date',
+        'limit': 5,
     }
     response = requests.post(url, data=params)
     response = response
