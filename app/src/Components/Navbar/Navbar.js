@@ -23,9 +23,13 @@ export class Navbar extends React.Component {
             <Link variant="button" color="textPrimary" href="#" className='MapPick'>
               Map Pick
               </Link>
-            <Link variant="button" color="textPrimary" href="#" className='CompareTeams'>
-              Compare Teams
-              </Link>
+            <div class="dropdown">
+              <button class="dropbtn">COMPARE TEAMS</button>
+              <div class="dropdown-content">
+                <a href="#">ASCENDING</a>
+                <a href="#">DESCENDING</a>
+              </div>
+            </div>
             <div class="dropdown">
               <button class="dropbtn">PLAYERS</button>
               <div class="dropdown-content">
