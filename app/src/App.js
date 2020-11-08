@@ -173,14 +173,19 @@ export class App extends React.Component {
       data.push({"TeamName": key, "Winrate": teamwins[key], "Color": '#5da9e8'});
     }
     console.log('win data', data);
-        // var data = [
-    //   { "TeamName": 'Team Liquid', "Winrate": 75, "Color": '#5da9e8' },
-    //   { "TeamName": 'G2 Esports', "Winrate": 20, "Color": '#ba9c9f' },
-    //   { "TeamName": 'Funplus Phoenix', "Winrate": 55, "Color": '#ff0015' },
-    //   { "TeamName": 'Fish123', "Winrate": 63, "Color": 'green' },
-    //   { "TeamName": 'OfflineTV', "Winrate": 23, "Color": 'Pink' }
-    // ]
+    /*  let data2 = [
+       { "TeamName": 'Team Liquid', "Winrate": 75, "Color": '#5da9e8' },
+       { "TeamName": 'G2 Esports', "Winrate": 20, "Color": '#ba9c9f' },
+       { "TeamName": 'Funplus Phoenix', "Winrate": 55, "Color": '#ff0015' },
+       { "TeamName": 'Fish123', "Winrate": 63, "Color": 'green' },
+       { "TeamName": 'OfflineTV', "Winrate": 23, "Color": 'Pink' }
+     ]
+     
+     console.log(data2)
 
+    for ( let i = 0; i < data2.length; i++){
+        data.push(data2[i])
+    }*/
     var margin = { top: 10, right: 30, bottom: 90, left: 200 },
       width = 1500 - margin.left - margin.right,
       height = 700 - margin.top - margin.bottom;
@@ -194,7 +199,7 @@ export class App extends React.Component {
 
     // Creating X axis scale
     var x = d3.scaleLinear()
-      .domain([0, 100])
+      .domain([0, 40])
       .range([0, width])
 
     //Creating Y axis scale  
@@ -206,6 +211,7 @@ export class App extends React.Component {
     svg.append("g")
       .call(d3.axisLeft(y))
       .attr("font-size", 20)
+      
 
     svg.append("text")
       .attr("x", (width / 2))
@@ -241,27 +247,12 @@ export class App extends React.Component {
       .enter()
       .append("rect")
       .attr("x", x(0))
-      .attr("y", function (d) { return y(d.TeamName) + 20; })
+      .attr("y", function (d) { return y(d.TeamName) + 5 })
       .attr("width", function (d) { return x(d.Winrate); })
-      .attr("height", y.bandwidth() - 50)
+      .attr("height", y.bandwidth() - 20 )
       .style("fill", function (d) { return (d["Color"]) })
 
-    //adding y axis 
-    svg.append("g")
-      .call(d3.axisLeft(y))
-
-
-    svg.append("g")
-      .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x))
-
-    svg.selectAll("Dummy")
-      .data(data)
-      .enter()
-      .append("circle")
-      .attr("cx", function (d) { return x(d[0]) })
-      .attr("cy", function (d) { return y(d[1]) })
-      .attr("r", 10)
+  
   }
 
 
