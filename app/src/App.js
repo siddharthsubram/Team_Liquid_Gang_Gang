@@ -13,7 +13,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import { Navbar } from "./Components/Navbar/Navbar";
-import * as d3 from "d3";
 
 function Copyright() {
   return (
