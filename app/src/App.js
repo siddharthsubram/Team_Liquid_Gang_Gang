@@ -14,6 +14,18 @@ import Box from '@material-ui/core/Box';
 import { Navbar } from "./Components/Navbar/Navbar";
 import axios from 'axios';
 import * as d3 from "d3";
+import { MuiThemeProvider, createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'; // responseiveFontSizes needs testing
+
+let theme = createMuiTheme({
+  palette: {
+    type: "dark",
+    primary: {
+      main: "#199bfc"
+    }
+  },
+});
+
+theme = responsiveFontSizes(theme);
 
 function Copyright() {
   return (
@@ -90,18 +102,21 @@ export class App extends React.Component {
     }
   }
   componentDidMount() {
-    this.getData();
+    // const endpoints = ['team', 'match', 'game', 'tournament'];
+    // for (const endpt of endpoints)
+      this.getData('team');
   }
 
-  getData() {
-    const url = 'http://localhost:4200/team/valorant';
+  getData(endpoint) {
+    const url = 'http://localhost:4200/' + endpoint + '/leagueoflegends';
     console.log('fetching data from', url);
     axios.get(url)
       .then(response => {
         console.log('response', response.data.result);
         this.setState({
-          rowData: response.data.result,
+          results: response.data.result,
         });
+        // console.log('state', this.state);
       })
       .catch(function (error) {
         // handle error
@@ -115,6 +130,7 @@ export class App extends React.Component {
   render() {
 
     return (
+      <MuiThemeProvider theme={theme}>
       <React.Fragment>
         <CssBaseline />
         <Navbar />
@@ -196,6 +212,7 @@ export class App extends React.Component {
         </Container>
         {/* End footer */}
       </React.Fragment>
+      </MuiThemeProvider>
     );
   }
 }
