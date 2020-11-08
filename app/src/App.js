@@ -102,6 +102,7 @@ export class App extends React.Component {
       results: [],
     }
     this.dataset = [100, 200, 300, 400, 500];
+    this.getData = this.getData.bind(this);
   }
   componentDidMount() {
     // const endpoints = ['team', 'match', 'game', 'tournament'];
@@ -135,6 +136,9 @@ export class App extends React.Component {
         this.setState({
           results: response.data.result,
         });
+        console.log(this.state.results);
+        this.converttoCSV(this.state.results);
+
         // console.log('state', this.state);
       })
       .catch(function (error) {
@@ -144,6 +148,14 @@ export class App extends React.Component {
       .finally(function () {
         // always executed
       });
+  }
+  converttoCSV(json){
+    const replacer = (key, value) => value === null ? '' : value // specify how you want to handle null values here
+    const header = Object.keys(json[0])
+    let csv = json.map(row => header.map(fieldName => JSON.stringify(row[fieldName], replacer)).join(','))
+    csv.unshift(header.join(','))
+    csv = csv.join(',\r\n')
+    console.log(csv)
   }
 
   render() {
