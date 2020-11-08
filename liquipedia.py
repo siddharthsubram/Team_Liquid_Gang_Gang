@@ -1,5 +1,6 @@
 from flask import Flask, json, request, jsonify
 from flask_cors import CORS
+import csv
 
 import requests
 
@@ -19,8 +20,6 @@ def index(datatype, wiki):
         'limit': 5,
     }
     response = requests.post(url, data=params)
-    response = response
-
     return response.content, response.status_code
     # return json.dumps({'message': 'hello world'}), 200
 

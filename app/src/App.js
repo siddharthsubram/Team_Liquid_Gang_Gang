@@ -102,6 +102,7 @@ export class App extends React.Component {
       results: [],
     }
     this.dataset = [100, 200, 300, 400, 500];
+    this.getData = this.getData.bind(this);
   }
   componentDidMount() {
     // const endpoints = ['team', 'match', 'game', 'tournament'];
@@ -109,21 +110,63 @@ export class App extends React.Component {
     this.getData('matchfeed', 'valorant');
     let size = 500;
     console.log(this.myRef);
-    let svg = d3.select(this.myRef.current)
-      .append('svg')
-      .attr('width', size)
-      .attr('height', size);
 
-    let rect_width = 95;
-    svg.selectAll('rect')
-      .data(this.dataset)
-      .enter()
-      .append('rect')
-      .attr('x', (d, i) => 5 + i * (rect_width + 5))
-      .attr('y', d => size - d)
-      .attr('width', rect_width)
-      .attr('height', d => d)
-      .attr('fill', 'teal');
+          
+    d3.csv("tasdfasdfasf.csv").then(function(data){
+        console.log(data); 
+    })
+      
+   
+      var data = [ 
+          //["X" , "Y"],
+          [1 , 5], 
+          [5 , 1], 
+          [3 , 2], 
+          [4 , 2]
+          
+      ]
+   
+      // console.log(data) 
+      
+      
+       var margin = {top: 10, right: 30, bottom: 90, left: 100},
+            width = 700 - margin.left - margin.right,
+            height = 700 - margin.top - margin.bottom;
+
+        // creating SVG
+        var svg = d3.select("body").append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+      
+         // Creating X axis scale
+        var x = d3.scaleLinear()
+            .domain([0, 10])
+            .range([ 0, width])
+
+        //Creating Y axis scale  
+        var y = d3.scaleLinear()
+            .domain([0, 10])
+            .range([ height, 0])  
+      
+       //adding y axis 
+            svg.append("g")
+                .call(d3.axisLeft(y))
+
+
+        svg.append("g")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x))
+      
+        svg.selectAll("Dummy")
+            .data(data)
+            .enter()
+            .append("circle")
+            .attr("cx", function (d) {return x(d[0]) } )
+            .attr("cy", function (d) {return y(d[1]) })
+            .attr("r", 10)   
+      
   }
 
   getData(endpoint, wiki) {
@@ -135,6 +178,9 @@ export class App extends React.Component {
         this.setState({
           results: response.data.result,
         });
+        console.log(this.state.results); // legit data
+        this.converttoCSV(this.state.results);
+
         // console.log('state', this.state);
       })
       .catch(function (error) {
@@ -144,6 +190,18 @@ export class App extends React.Component {
       .finally(function () {
         // always executed
       });
+      
+      d3.csv("")
+  }
+    
+   
+  converttoCSV(json){
+    const replacer = (key, value) => value === null ? '' : value // specify how you want to handle null values here
+    const header = Object.keys(json[0])
+    let csv = json.map(row => header.map(fieldName => JSON.stringify(row[fieldName], replacer)).join(','))
+    csv.unshift(header.join(','))
+    csv = csv.join(',\r\n')
+    // console.log(csv)
   }
 
   render() {
